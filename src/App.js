@@ -3,11 +3,11 @@ import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import BookSearch from './BookSearch'
+import SearchBar from './SearchBar'
 import SearchButton from './SearchButton'
 import Bookshelf from './Bookshelf'
 import Header from './Header'
-import BookLibrary from './Booklibrary'
+import BookLibrary from './BookLibrary'
 
 class BooksApp extends React.Component {
   state = {
@@ -17,8 +17,12 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route path="/" component={BookLibrary}>
-        <Route path="/search" component={SearchBar}>
+        <Route exact path="/" render={() => (
+          <BookLibrary />
+        )} />
+        <Route path="/search" render={() => (
+          <SearchBar />
+        )} />
       </div>
     )
   }
