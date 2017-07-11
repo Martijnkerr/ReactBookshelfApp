@@ -13,7 +13,7 @@ class BookLibrary extends Component {
           <Bookshelf />
           <Bookshelf />
           <div className="open-search">
-            <Link to ="/search" />
+            <Link to="/search" />
           </div>
         </div>
       </div>
