@@ -1,23 +1,18 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBar from './SearchBar'
 import BookLibrary from './BookLibrary'
 
+
 class BooksApp extends React.Component {
-  state = {
-
-  }
-
-  // todo
-  // fetch search result on component mount <searchbar> input onchange
-
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <BookLibrary />
+          <BookLibrary
+
+           />
         )} />
         <Route path="/search" render={() => (
           <SearchBar />

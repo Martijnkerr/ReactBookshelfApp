@@ -9,9 +9,15 @@ class BookLibrary extends Component {
       <div>
         <div className="list-books">
           <Header />
-          <Bookshelf />
-          <Bookshelf />
-          <Bookshelf />
+          <Bookshelf
+            shelfName="Currently reading"
+          />
+          <Bookshelf
+            shelfName="Want to read"
+           />
+          <Bookshelf
+            shelfName="Read"
+           />
           <div className="open-search">
             <Link to="/search" />
           </div>
