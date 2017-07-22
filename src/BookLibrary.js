@@ -10,12 +10,11 @@ class BookLibrary extends Component {
   }
 
   updateBook(book, shelf) {
-    BooksAPI.update(book, shelf).then(books => {
-      // books[currentlyReading].each Book.id
-      // Create the array of books from objects in response
-      let newBooks = ....
-      this.setState({ books: newBooks})
+    BooksAPI.update(book, shelf)
+    const newBooks = this.state.books.forEach(function(b) {
+      return (b.id === book.id) ? book.shelf = shelf : null;
     })
+    this.setState({ newBooks })
   }
 
   componentDidMount() {
