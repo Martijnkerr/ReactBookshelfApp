@@ -3,19 +3,21 @@ import React, { Component } from 'react'
 
 class Book extends Component {
   render() {
-    const { props } = this
+    const { book } = this.props
     const bookCoverStyling = {
         width: 128,
         height: 193,
-        backgroundImage: "url("+props.book.imageLinks.thumbnail+")"
+        backgroundImage: "url("+book.imageLinks.thumbnail+")"
     }
+
     return (
+
         <li>
           <div className="book">
             <div className="book-top">
               <div className="book-cover" style={bookCoverStyling}></div>
               <div className="book-shelf-changer">
-                <select>
+                <select value={book.shelf} onChange={(i) => this.props.onUpdateBook(book, i.target.value)}>
                   <option value="none" disabled>Move to...</option>
                   <option value="currentlyReading">Currently Reading</option>
                   <option value="wantToRead">Want to Read</option>
@@ -24,8 +26,8 @@ class Book extends Component {
                 </select>
               </div>
             </div>
-            <div className="book-title">{props.book.title}</div>
-            <div className="book-authors">{props.book.authors}</div>
+            <div className="book-title">{book.title}</div>
+            <div className="book-authors">{book.authors}</div>
           </div>
         </li>
     )

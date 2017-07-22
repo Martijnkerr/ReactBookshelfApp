@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Book from './Book'
 
 class Bookshelf extends Component {
+
   render() {
     const { books } = this.props
     return (
@@ -14,6 +15,9 @@ class Bookshelf extends Component {
               <Book
               key={book.id}
               book={book}
+              onUpdateBook={(book, shelf) => {
+                this.props.updateBookParams(book, shelf)
+              }}
               />
             )}
             </ol>
