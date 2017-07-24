@@ -14,21 +14,21 @@ class BookLibrary extends Component {
             shelfName="Currently Reading"
             books={this.props.currentlyReadingBooks}
             onUpdateBook={(book, shelf) => {
-              this.props.updateBookParams(book, shelf)
+              this.props.onUpdateBook(book, shelf)
             }}
           />
           <Bookshelf
             shelfName="Want to Read"
             books={this.props.wantToReadBooks}
             onUpdateBook={(book, shelf) => {
-              this.props.updateBookParams(book, shelf)
+              this.props.onUpdateBook(book, shelf)
             }}
            />
           <Bookshelf
             shelfName="Read"
             books={this.props.readBooks}
             onUpdateBook={(book, shelf) => {
-              this.props.updateBookParams(book, shelf)
+              this.props.onUpdateBook(book, shelf)
             }}
            />
           <div className="open-search">

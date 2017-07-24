@@ -31,7 +31,7 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route exact path="/" render={() => (
           <BookLibrary
-            updateBookParams={(book, shelf) => {
+            onUpdateBook={(book, shelf) => {
               this.updateBook(book, shelf)
               }}
             currentlyReadingBooks={this.state.books.filter((b) => b.shelf === "currentlyReading")}
@@ -42,6 +42,9 @@ class BooksApp extends React.Component {
         <Route path="/search" render={() => (
           <SearchBar
             books={this.state.books}
+            onUpdateBook={(book, shelf) => {
+              this.updateBook(book, shelf)
+              }}
           />
         )} />
       </div>
