@@ -16,7 +16,7 @@ class Bookshelf extends Component {
               key={book.id}
               book={book}
               onUpdateBook={(book, shelf) => {
-                this.props.updateBookParams(book, shelf)
+                this.props.onUpdateBook(book, shelf)
               }}
               />
             )}

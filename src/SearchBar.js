@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Book from './Book'
 
 class SearchBar extends Component {
   render() {
@@ -12,7 +13,17 @@ class SearchBar extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+          {this.props.books.map((book) =>
+            <Book
+            key={book.id}
+            book={book}
+            onUpdateBook={(book, shelf) => {
+              this.props.onUpdateBook(book, shelf)
+            }}
+            />
+          )}
+          </ol>
         </div>
       </div>
     )
