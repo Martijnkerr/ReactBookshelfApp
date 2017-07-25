@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Book extends Component {
+  static propTypes = {
+    key: PropTypes.number.isRequired,
+    book: PropTypes.object.isRequired,
+    onUpdateBook: PropTypes.func.isRequired
+  }
+
   render() {
     const { book } = this.props
     const bookCoverStyling = {

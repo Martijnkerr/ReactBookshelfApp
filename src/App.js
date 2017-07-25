@@ -5,11 +5,16 @@ import SearchBar from './SearchBar'
 import BookLibrary from './BookLibrary'
 
 class BooksApp extends React.Component {
+  state = {
+    books: []
+  }
+
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <BookLibrary />
+          <BookLibrary
+          />
         )} />
         <Route path="/search" render={() => (
           <SearchBar />
