@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
 
-class SearchBar extends Component {
+class Search extends Component {
+
+  state = {
+    q: '',
+    results: []
+  }
+
   render() {
     return (
       <div className="search-books">
@@ -31,4 +37,4 @@ class SearchBar extends Component {
 }
 
 
-export default SearchBar
+export default Search

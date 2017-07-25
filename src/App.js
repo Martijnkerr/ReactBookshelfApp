@@ -1,14 +1,15 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
-import SearchBar from './SearchBar'
+import Search from './Search'
 import BookLibrary from './BookLibrary'
 import * as BooksAPI from '../src/BooksAPI'
 
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    search: ''
   }
 
   updateBook(book, shelf) {
@@ -40,7 +41,7 @@ class BooksApp extends React.Component {
            />
         )} />
         <Route path="/search" render={() => (
-          <SearchBar
+          <Search
             books={this.state.books}
             onUpdateBook={(book, shelf) => {
               this.updateBook(book, shelf)
