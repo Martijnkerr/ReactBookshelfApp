@@ -11,11 +11,11 @@ class BooksApp extends React.Component {
   }
 
   updateBook(book, shelf) {
-    BooksAPI.update(book, shelf)
-    const newBooks = this.state.books.forEach(function(b) {
-    return (b.id === book.id) ? book.shelf = shelf : null;
+    BooksAPI.update(book, shelf).then(book => {
+      this.setState(state => ({
+        books: state.books.concat([book])
+      }))
     })
-    this.setState({ newBooks })
   }
 
   componentDidMount() {
@@ -24,7 +24,14 @@ class BooksApp extends React.Component {
     })
   }
 
+  componentDidUpdate() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
+
   render() {
+
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -36,7 +43,11 @@ class BooksApp extends React.Component {
           />
         )} />
         <Route path="/search" render={() => (
-          <SearchBar />
+          <SearchBar
+            onUpdateBook={(book, shelf) => {
+              this.updateBook(book, shelf)
+            }}
+          />
         )} />
       </div>
     )

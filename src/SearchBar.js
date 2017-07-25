@@ -2,11 +2,17 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
 import * as BooksAPI from '../src/BooksAPI'
+import PropTypes from 'prop-types'
 
 class SearchBar extends Component {
 
   state = {
-    query: ''
+    query: '',
+    books: []
+  }
+
+  static PropTypes = {
+    onUpdateBook: PropTypes.func.isRequired
   }
 
   updateQuery = (query) => {
@@ -17,17 +23,7 @@ class SearchBar extends Component {
     })
   }
 
-  onUpdateBook(book, shelf) {
-    BooksAPI.update(book, shelf)
-    const newBooks = this.state.books.forEach(function(b) {
-      return (b.id === book.id) ? book.shelf = shelf : null;
-    })
-    this.setState({ newBooks })
-  }
-
   render() {
-
-    const { books } = this.state
 
     return (
       <div className="search-books">
@@ -44,13 +40,13 @@ class SearchBar extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {typeof books !== 'undefined' && (
-              books.map((book) =>
+            {typeof this.state.books !== 'undefined' && (
+              this.state.books.map((book) =>
                 <Book
                 key={book.id}
                 book={book}
-                onUpdateBook={(book, shelf) => {
-                  this.onUpdateBook(book, shelf)
+                bookUpdate={(book, shelf) => {
+                  this.props.onUpdateBook(book, shelf)
                 }}
                 />
               )
