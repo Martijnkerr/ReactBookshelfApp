@@ -4,15 +4,12 @@ import './App.css'
 import SearchBar from './SearchBar'
 import BookLibrary from './BookLibrary'
 
-
 class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <BookLibrary
-
-           />
+          <BookLibrary />
         )} />
         <Route path="/search" render={() => (
           <SearchBar />
