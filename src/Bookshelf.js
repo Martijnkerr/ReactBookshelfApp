@@ -6,7 +6,7 @@ class Bookshelf extends Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired,
-    onUpdateBookParams: PropTypes.func.isRequired
+    onUpdateBook: PropTypes.func.isRequired
   }
 
   render() {
@@ -21,8 +21,8 @@ class Bookshelf extends Component {
               <Book
               key={book.id}
               book={book}
-              onUpdateBook={(book, shelf) => {
-                this.props.updateBookParams(book, shelf)
+              bookUpdate={(book, shelf) => {
+                this.props.onUpdateBook(book, shelf)
               }}
               />
             )}

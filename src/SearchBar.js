@@ -17,12 +17,6 @@ class SearchBar extends Component {
     })
   }
 
-  componentDidMount() {
-    BooksAPI.search('Travel').then((books) => {
-      this.setState({ books })
-    })
-  }
-
   onUpdateBook(book, shelf) {
     BooksAPI.update(book, shelf)
     const newBooks = this.state.books.forEach(function(b) {
