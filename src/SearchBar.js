@@ -18,9 +18,17 @@ class SearchBar extends Component {
   }
 
   componentDidMount() {
-    BooksAPI.search(this.state.query).then((books) => {
+    BooksAPI.search('Travel').then((books) => {
       this.setState({ books })
     })
+  }
+
+  onUpdateBook(book, shelf) {
+    BooksAPI.update(book, shelf)
+    const newBooks = this.state.books.forEach(function(b) {
+      return (b.id === book.id) ? book.shelf = shelf : null;
+    })
+    this.setState({ newBooks })
   }
 
   render() {
@@ -42,13 +50,13 @@ class SearchBar extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {typeof books != 'undefined' && (
+            {typeof books !== 'undefined' && (
               books.map((book) =>
                 <Book
                 key={book.id}
                 book={book}
                 onUpdateBook={(book, shelf) => {
-                  this.props.updateBookParams(book, shelf)
+                  this.onUpdateBook(book, shelf)
                 }}
                 />
               )
