@@ -45,7 +45,7 @@ class Search extends Component {
                 <Book
                 key={book.id}
                 book={book}
-                bookUpdate={(book, shelf) => {
+                onUpdateBook={(book, shelf) => {
                   this.props.onUpdateBook(book, shelf)
                 }}
                 />
