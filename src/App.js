@@ -12,11 +12,29 @@ class BooksApp extends React.Component {
     search: ''
   }
 
+  // Check if book is new one or already on my shelfs
+  isBookInState(book) {
+    for (let i = 0; i < this.state.books.length; i++) {
+      if (this.state.books[i].id === book.id) {
+        return true
+      }
+    }
+    return false
+  }
+
+
   updateBook(book, shelf) {
-    BooksAPI.update(book, shelf)
-    const newBooks = this.state.books.forEach(function(b) {
-      return (b.id === book.id) ? book.shelf = shelf : null;
-    })
+    let newBooks = []
+    // If book is already on shelf, I just need to update current book
+    if(this.isBookInState(book)) {
+      BooksAPI.update(book, shelf)
+      newBooks = this.state.books.forEach(function(b) {
+        return (b.id === book.id) ? book.shelf = shelf : null;
+      })
+      // If its a new one I need to add the object to the state
+    } else {
+      newBooks = this.state.books.push(book)
+    }
     this.setState({ newBooks })
   }
 
