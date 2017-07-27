@@ -15,11 +15,29 @@ class Search extends Component {
     onUpdateBook: PropTypes.func.isRequired
   }
 
+  setCorrectBookShelf = (books) => {
+    const correctlySetBooks = books.map(book => {
+      let booksWithoutUserBooks = books.filter(userBook => {
+        return book.id === userBook.id;
+      })
+      let correctShelf = booksWithoutUserBooks.length & booksWithoutUserBooks[0].shelf
+      if (correctShelf) {
+        return {...book, ...{shelf: correctShelf}}
+      } else {
+        return book
+      }
+    })
+    return correctlySetBooks
+  }
+
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
-
     BooksAPI.search(this.state.query).then((books) => {
-      this.setState({ books })
+      if(typeof books !== 'undefined') {
+        let results = this.setCorrectBookShelf(books);
+        console.log(results)
+        this.setState({ books: results })
+      }
     })
   }
 

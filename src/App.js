@@ -24,18 +24,32 @@ class BooksApp extends React.Component {
 
 
   updateBook(book, shelf) {
-    let newBooks = []
-    // If book is already on shelf, I just need to update current book
-    if(this.isBookInState(book)) {
+
+    if (this.isBookInState(book)){
+      // Book is already in shelf so update
       BooksAPI.update(book, shelf)
-      newBooks = this.state.books.forEach(function(b) {
-        return (b.id === book.id) ? book.shelf = shelf : null;
+      // Change state -> not with .then() because it returns ID's
+      this.setState(prevState => {
+        let books = prevState.books.map(b => {
+          if (b.id !== book.id) {
+            return b;
+          } else {
+            return {...b, ...{shelf}}
+          }
+        })
+        return {...prevState, ...{books}};
       })
-      // If its a new one I need to add the object to the state
+
     } else {
-      newBooks = this.state.books.push(book)
+      // Book is not in shelf yet so add
+      this.setState(prevState => {
+        let newBook = {...book, ...{shelf}};
+        console.log(newBook)
+        let books = prevState.books.concat(newBook)
+        return {...prevState, ...{books}};
+      })
     }
-    this.setState({ newBooks })
+
   }
 
   componentDidMount() {
